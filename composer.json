@@ -1,0 +1,36 @@
+{
+  "name": "knight/artifact-redis",
+  "type": "library",
+  "description": "Knight PHP artifact cache redis",
+  "keywords": [
+    "ubyte",
+    "knight",
+    "artifact",
+    "redis"
+  ],
+  "homepage": "https://github.com/energia-source/knight-artifact-redis",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paolo Fabris",
+      "email": "support@ubyte.it",
+      "homepage": "https://www.ubyte.it/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Redis\\": "lib/"
+    }
+  },
+  "require": {
+    "php": ">=7.3",
+    "energia-source/knight-armor": ">=2.0.1"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/energia-source/knight-armor"
+    }
+  ]
+}
