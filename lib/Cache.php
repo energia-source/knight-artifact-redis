@@ -11,6 +11,9 @@ use Knight\armor\Cipher;
 
 class Cache
 {
+    const ESCAPE = ':';
+    const EVERYONE = 'everyone';
+
     final protected function __construct() {}
 
     final public static function instance() :? Redis
@@ -24,51 +27,59 @@ class Cache
             $instance->connect(Configuration::getHost(), Configuration::getPort(), Configuration::getTimeout());
             $instance_application = Configuration::getApplication();
             $instance->setOption(Redis::OPT_PREFIX, $instance_application . chr(58));
+
             return $instance;
         } catch (RedisException $exception) {
             return null;
         }
     }
 
-    public static function set(string $key, $value, int $ttl = null) : bool
+    public static function set(string $key, string $whoami, $value, int $ttl = null) : bool
     {
         $redis = static::instance();
         if (null === $redis) return false;
-        return $redis->set(static::hash($key), static::encode($value), $ttl ?? Configuration::getTTL());
+
+        $named = $whoami . static::ESCAPE . static::hash($key);
+        return $redis->set($named, static::encode($value), $ttl ?? Configuration::getTTL());
     }
 
-    public static function get(string $key, ?Closure $closure = null)
+    public static function get(string $key, string $whoami, ?Closure $closure = null)
     {
         $redis = static::instance();
-        if (null !== $redis)
-            if ($response = $redis->get(static::hash($key)))
-                return static::decode($response);
+        if (null !== $redis) {
+            $named = $whoami . static::ESCAPE . static::hash($key);
+            $response = $redis->get($named);
+            if (!!$response) return static::decode($response);
+        }
 
         if (false === is_callable($closure)) return null;
     
-        $cached =  call_user_func($closure);
-        static::set($key, $cached);
+        $cached = call_user_func($closure);
+        static::set($key, $whoami, $cached);
+
         return $cached;
     }
 
-    public static function increment(string $key, int $ttl = null) :? int
+    public static function increment(string $key, string $whoami, int $ttl = null) :? int
     {
         $redis = static::instance();
         if (null === $redis) return null;
 
-        $redis_response = $redis->incr(static::hash($key));
-        $redis->expire(static::hash($key), $ttl ?? Configuration::getTTL());
+        $named = $whoami . static::ESCAPE . static::hash($key);
+        $redis_response = $redis->incr($named);
+        $redis->expire($named, $ttl ?? Configuration::getTTL());
 
         return $redis_response;
     }
 
-    public static function decrement(string $key, int $ttl = null) :? int
+    public static function decrement(string $key, string $whoami, int $ttl = null) :? int
     {
         $redis = static::instance();
         if (null === $redis) return null;
 
-        $redis_response = $redis->decr(static::hash($key));
-        $redis->expire(static::hash($key), $ttl ?? Configuration::getTTL());
+        $named = $whoami . static::ESCAPE . static::hash($key);
+        $redis_response = $redis->decr($named);
+        $redis->expire($named, $ttl ?? Configuration::getTTL());
 
         return $redis_response;
     }
