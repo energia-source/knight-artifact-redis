@@ -14,6 +14,8 @@ class Cache
     const ESCAPE = ':';
     const EVERYONE = 'everyone';
 
+    protected static $ttl = null; // (int)
+
     final protected function __construct() {}
 
     final public static function instance() :? Redis
@@ -34,13 +36,24 @@ class Cache
         }
     }
 
-    public static function set(string $key, string $whoami, $value, int $ttl = null) : bool
+    public static function setTTL(?int $seconds = null) : void
+    {
+        static::$ttl = $seconds;
+    }
+
+    public static function getTTL() : int
+    {
+        return static::$ttl ?? Configuration::getTTL();
+    }
+
+    public static function set(string $key, string $whoami, $value, int $ttl) : bool
     {
         $redis = static::instance();
         if (null === $redis) return false;
 
         $named = $whoami . static::ESCAPE . static::hash($key);
-        return $redis->set($named, static::encode($value), $ttl ?? Configuration::getTTL());
+        $value_encoded = static::encode($value);
+        return $redis->set($named, $value_encoded, $ttl);
     }
 
     public static function get(string $key, string $whoami, ?Closure $closure = null)
@@ -55,7 +68,7 @@ class Cache
         if (false === is_callable($closure)) return null;
     
         $cached = call_user_func($closure);
-        static::set($key, $whoami, $cached);
+        static::set($key, $whoami, $cached, static::getTTL());
 
         return $cached;
     }
@@ -67,7 +80,7 @@ class Cache
 
         $named = $whoami . static::ESCAPE . static::hash($key);
         $redis_response = $redis->incr($named);
-        $redis->expire($named, $ttl ?? Configuration::getTTL());
+        $redis->expire($named, $ttl ?? static::getTTL());
 
         return $redis_response;
     }
@@ -79,7 +92,7 @@ class Cache
 
         $named = $whoami . static::ESCAPE . static::hash($key);
         $redis_response = $redis->decr($named);
-        $redis->expire($named, $ttl ?? Configuration::getTTL());
+        $redis->expire($named, $ttl ?? static::getTTL());
 
         return $redis_response;
     }
