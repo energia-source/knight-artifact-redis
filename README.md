@@ -145,39 +145,6 @@ Decrement the value of a key in Redis
      <p>
  * **Returns:** `The` — value of the key.
 
-##### `protected static function encode($mixed) : string`
-
-Encrypts the serialized data using the cipher and returns the base64 encoded result
-
- * **Parameters:** `mixed` — value to be encrypted.
-
-     <p>
- * **Returns:** `The` — encrypted data.
-
-##### `protected static function decode(string $data)`
-
-Decode the data using the cipher and unserialize the decoded data
-
- * **Parameters:** `string` — The data to be decrypted.
-
-     <p>
- * **Returns:** `An` — array of the user's data.
-
-##### `protected static function getCipher() : Cipher`
-
-It returns a Cipher object that is initialized with the passphrase.
-
- * **Returns:** `The` — Cipher object.
-
-##### `protected static function hash(string $key) : string`
-
-It hashes the key using the algorithm specified in the configuration.
-
- * **Parameters:** `string` — The key to hash.
-
-     <p>
- * **Returns:** `The` — hash of the key.
-
 #### Redis\Configuration
 
 ##### `public static function getHost() : string`
