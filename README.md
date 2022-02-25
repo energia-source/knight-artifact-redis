@@ -208,7 +208,7 @@ We use [SemVer](https://semver.org/) for versioning. For the versions available,
 ## Authors
 
 * **Paolo Fabris** - *Initial work* - [energia-europa.com](https://www.energia-europa.com/)
-* **Gabriele Masero** - *Developer* - [energia-europa.com](https://www.energia-europa.com/)
+* **Gabriele Luigi Masero** - *Developer* - [energia-europa.com](https://www.energia-europa.com/)
 
 See also the list of [contributors](https://github.com/energia-source/knight-artifact-redis/blob/main/CONTRIBUTORS.md) who participated in this project.
 
