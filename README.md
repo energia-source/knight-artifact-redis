@@ -191,11 +191,7 @@ Get the algorithm from the configuration file
 
  ## Built With
 
-* [Docker](https://www.docker.com/) - Get Started with Docker
-* [Alpine Linux](https://alpinelinux.org/) - Alpine Linux
-* [Nginx](https://www.nginx.com/) - Nginx
 * [PHP](https://www.php.net/) - PHP
-* [Redis](https://redis.io/) - Redis
 
 ## Contributing
 
