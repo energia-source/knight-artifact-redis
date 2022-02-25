@@ -58,7 +58,7 @@ final class Cache
 
 ```
 
-### Usage
+## Usage
 
 So the basic usage looks something like this:
 
@@ -82,7 +82,7 @@ $cache = Cache::get($key, $user_identity, function () {
     - [Redis\Cache](https://github.com/energia-source/knight-artifact-redis/blob/main/lib/Cache.php)
     - [Redis\Configuration](https://github.com/energia-source/knight-artifact-redis/blob/main/lib/Configuration.php)
 
-### Redis\Cache
+> ### Redis\Cache
 
 ##### `public static function setTTL(?int $seconds = null) : void`
 
@@ -145,7 +145,7 @@ Decrement the value of a key in Redis
      <p>
  * **Returns:** `The` — value of the key.
 
-#### Redis\Configuration
+> #### Redis\Configuration
 
 ##### `public static function getHost() : string`
 
