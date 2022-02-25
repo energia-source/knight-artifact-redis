@@ -76,21 +76,32 @@ $cache = Cache::get($key, $user_identity, function () {
 
 ```
 
-#### Methods of Redis\Cache
+## Classes
 
-###### `public static function setTTL(?int $seconds = null) : void`
+<!-- TOC -->
+
+- [Classes](#Classes)
+    - [Redis\Cache](#Redis\Cache)
+    - [Redis\Configuration](#Redis\Configuration)
+
+<!-- /TOC -->
+
+
+### Redis\Cache
+
+##### `public static function setTTL(?int $seconds = null) : void`
 
 Set the time to live for the cache
 
  * **Parameters:** `seconds` — number of seconds to cache the result for.
 
-###### `public static function getTTL() : int`
+##### `public static function getTTL() : int`
 
 Get the TTL value from the configuration file, or use the default value
 
  * **Returns:** `The` — TTL value from the configuration file.
 
-###### `public static function set(string $key, string $whoami, $value, int $ttl) : bool`
+##### `public static function set(string $key, string $whoami, $value, int $ttl) : bool`
 
 Set a value in the cache
 
@@ -103,7 +114,7 @@ Set a value in the cache
      <p>
  * **Returns:** `A` — boolean value indicating success or failure.
 
-###### `public static function get(string $key, string $whoami, ?Closure $closure = null)`
+##### `public static function get(string $key, string $whoami, ?Closure $closure = null)`
 
 If the key is in the cache, return it. Otherwise, call the closure and cache the result
 
@@ -115,7 +126,7 @@ If the key is in the cache, return it. Otherwise, call the closure and cache the
      <p>
  * **Returns:** `The` — value of the key.
 
-###### `public static function increment(string $key, string $whoami, int $ttl = null) :? int`
+##### `public static function increment(string $key, string $whoami, int $ttl = null) :? int`
 
 Increment the value of a key in Redis
 
@@ -127,7 +138,7 @@ Increment the value of a key in Redis
      <p>
  * **Returns:** `The` — value of the key.
 
-###### `public static function decrement(string $key, string $whoami, int $ttl = null) :? int`
+##### `public static function decrement(string $key, string $whoami, int $ttl = null) :? int`
 
 Decrement the value of a key in Redis
 
@@ -139,7 +150,7 @@ Decrement the value of a key in Redis
      <p>
  * **Returns:** `The` — value of the key.
 
-###### `protected static function encode($mixed) : string`
+##### `protected static function encode($mixed) : string`
 
 Encrypts the serialized data using the cipher and returns the base64 encoded result
 
@@ -148,7 +159,7 @@ Encrypts the serialized data using the cipher and returns the base64 encoded res
      <p>
  * **Returns:** `The` — encrypted data.
 
-###### `protected static function decode(string $data)`
+##### `protected static function decode(string $data)`
 
 Decode the data using the cipher and unserialize the decoded data
 
@@ -157,13 +168,13 @@ Decode the data using the cipher and unserialize the decoded data
      <p>
  * **Returns:** `An` — array of the user's data.
 
-###### `protected static function getCipher() : Cipher`
+##### `protected static function getCipher() : Cipher`
 
 It returns a Cipher object that is initialized with the passphrase.
 
  * **Returns:** `The` — Cipher object.
 
-###### `protected static function hash(string $key) : string`
+##### `protected static function hash(string $key) : string`
 
 It hashes the key using the algorithm specified in the configuration.
 
@@ -172,46 +183,73 @@ It hashes the key using the algorithm specified in the configuration.
      <p>
  * **Returns:** `The` — hash of the key.
 
-#### Methods of Redis\Configuration
+#### Redis\Configuration
 
-###### `public static function getHost() : string`
+##### `public static function getHost() : string`
 
 Get the host from the configuration file
 
  * **Returns:** `The` — hostname of the server.
 
-###### `public static function getApplication() : string`
+##### `public static function getApplication() : string`
 
 Get the application name from the configuration file
 
  * **Returns:** `The` — application name.
 
-###### `public static function getPassphrase() : string`
+##### `public static function getPassphrase() : string`
 
 It gets the passphrase from the configuration file.
 
  * **Returns:** `The` — value of the configuration setting.
 
-###### `public static function getPort() : int`
+##### `public static function getPort() : int`
 
 Get the port number from the configuration file
 
  * **Returns:** `The` — port number.
 
-###### `public static function getTimeout() : float`
+##### `public static function getTimeout() : float`
 
 Get the timeout value from the configuration file
 
  * **Returns:** `The` — value of the timeout configuration setting.
 
-###### `public static function getTTL() : int`
+##### `public static function getTTL() : int`
 
 Get the TTL value from the configuration file
 
  * **Returns:** `The` — TTL value.
 
-###### `public static function getAlgorithm() : string`
+##### `public static function getAlgorithm() : string`
 
 Get the algorithm from the configuration file
 
  * **Returns:** `The` — algorithm name.
+
+ ## Built With
+
+* [Docker](https://www.docker.com/) - Get Started with Docker
+* [Alpine Linux](https://alpinelinux.org/) - Alpine Linux
+* [Nginx](https://www.nginx.com/) - Nginx
+* [PHP](https://www.php.net/) - PHP
+* [Redis](https://redis.io/) - Redis
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/energia-source/knight-artifact-redis/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting us pull requests.
+
+## Versioning
+
+We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/energia-source/knight-artifact-redis/tags). 
+
+## Authors
+
+* **Paolo Fabris** - *Initial work* - [energia-europa.com](https://www.energia-europa.com/)
+* **Gabriele Masero** - *Developer* - [energia-europa.com](https://www.energia-europa.com/)
+
+See also the list of [contributors](https://github.com/energia-source/knight-artifact-redis/blob/main/CONTRIBUTORS.md) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
