@@ -76,13 +76,11 @@ $cache = Cache::get($key, $user_identity, function () {
 
 ```
 
-## Classes
+## Structure
 
-<!-- TOC -->
-
-- Structure:
-    - Redis\Cache
-    - Redis\Configuration
+- library:
+    - [Redis\Cache](https://github.com/energia-source/knight-artifact-redis/blob/main/lib/Cache.php)
+    - [Redis\Configuration](https://github.com/energia-source/knight-artifact-redis/blob/main/lib/Configuration.php)
 
 ### Redis\Cache
 
