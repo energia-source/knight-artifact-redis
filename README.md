@@ -78,9 +78,11 @@ $cache = Cache::get($key, $user_identity, function () {
 
 ## Classes
 
-- [Structure]
-    - [Redis\Cache]
-    - [Redis\Configuration]
+<!-- TOC -->
+
+- Structure:
+    - Redis\Cache
+    - Redis\Configuration
 
 ### Redis\Cache
 
