@@ -46,9 +46,9 @@ final class Cache
 		// redis port
 		Define::CONFIGURATION_PORT => 6379,
 		// redis timout in second
-        Define::CONFIGURATION_TIMEOUT => 1,
+		Define::CONFIGURATION_TIMEOUT => 1,
 		// redis TTL
-        Define::CONFIGURATION_TTL => 120,
+		Define::CONFIGURATION_TTL => 120,
 		// redis application prefix for all keys
 		Define::CONFIGURATION_APPLICATION => 'myapplication',
 		// redis crypt passphrase
