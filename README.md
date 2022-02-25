@@ -82,7 +82,7 @@ $cache = Cache::get($key, $user_identity, function () {
     - [Redis\Cache](https://github.com/energia-source/knight-artifact-redis/blob/main/lib/Cache.php)
     - [Redis\Configuration](https://github.com/energia-source/knight-artifact-redis/blob/main/lib/Configuration.php)
 
-> # Redis\Cache usable methods
+> ## Class Redis\Cache usable methods
 
 ##### `public static function setTTL(?int $seconds = null) : void`
 
@@ -145,7 +145,7 @@ Decrement the value of a key in Redis
      <p>
  * **Returns:** `The` — value of the key.
 
-> # Redis\Configuration usable methods
+> ## Class Redis\Configuration usable methods
 
 ##### `public static function getHost() : string`
 
