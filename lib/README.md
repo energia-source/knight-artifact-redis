@@ -9,7 +9,7 @@ that project.
 ## Structure
 
 library:
-    - [Redis](https://github.com/energia-source/knight-artifact-redis/tree/main/lib)
+- [Redis](https://github.com/energia-source/knight-artifact-redis/tree/main/lib)
 
 <br>
 
